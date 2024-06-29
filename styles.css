@@ -1,0 +1,90 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+header h1, header h2 {
+    text-align: center;
+    margin: 0;
+}
+
+.header-info {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.article-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.article-info div, .article-specs, .header-info div {
+    flex: 1;
+    margin: 5px;
+}
+
+fieldset {
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+legend {
+    font-weight: bold;
+}
+
+input[type="text"], input[type="number"], input[type="date"], textarea {
+    margin: 5px;
+    padding: 5px;
+    width: calc(100% - 22px);
+    box-sizing: border-box;
+}
+
+button {
+    margin: 5px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+table {
+    width: 100%;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+textarea {
+    width: 100%;
+    box-sizing: border-box;
+}
