@@ -1,168 +1,190 @@
-let materiales = [];
-let manoDeObra = [];
-let gastosIndirectos = [];
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Orden de Producción - Cristales S.A.</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>Cristales S.A.</h1>
+        <h2>ORDEN DE PRODUCCIÓN</h2>
+        <div class="header-info">
+          <div>
+            <strong>Fecha de Expedición:</strong>
+            <input type="date" id="fechaExpedicion" />
+          </div>
+          <div>
+            <strong>Departamento/Área:</strong>
+            <input type="text" id="departamento" />
+          </div>
+          <div>
+            <strong>Nº:</strong> <input type="text" id="numeroDocumento" />
+          </div>
+        </div>
+      </header>
 
-function agregarMaterial() {
-    const listaMateriales = document.getElementById('listaMateriales');
-    const cantidadMaterial = document.getElementById('cantidadMaterial');
-    const precioUnitarioMaterial = document.getElementById('precioUnitarioMaterial');
+      <section>
+        <h3>Se solicita realizar el siguiente artículo:</h3>
+        <div class="article-info">
+          <div>
+            <strong>Nombre Artículo:</strong>
+            <input type="text" id="nombreArticulo" />
+          </div>
+          <div>
+            <strong>Cantidad Iniciada:</strong>
+            <input type="number" id="cantidadIniciada" />
+          </div>
+          <div>
+            <strong>Cantidad Terminada:</strong>
+            <input type="number" id="cantidadTerminada" />
+          </div>
+          <div>
+            <strong>Cantidad a Producir:</strong>
+            <input type="number" id="cantidadProducir" />
+          </div>
+          <div>
+            <strong>Referencia Artículo:</strong>
+            <input type="text" id="referenciaArticulo" />
+          </div>
+          <div>
+            <strong>Fecha Ingreso Bodega:</strong>
+            <input type="date" id="fechaIngresoBodega" />
+          </div>
+          <div>
+            <strong>Unidad Medida:</strong>
+            <input type="text" id="unidadMedida" />
+          </div>
+        </div>
+        <div class="article-specs">
+          <strong>Especificaciones:</strong>
+          <textarea
+            id="especificaciones"
+            rows="3"
+            placeholder="Producción de botellas de vino, con capacidad para almacenar 750 mililitros. Cristal oscuro."
+          ></textarea>
+        </div>
+      </section>
 
-    // Validar que los campos obligatorios estén llenos
-    if (!listaMateriales.value.trim()) {
-        alert('Debe seleccionar un material de la lista');
-        return;
-    }
+      <fieldset>
+        <legend>Materiales</legend>
+        <select id="listaMateriales" required>
+          <option value="">Seleccione un material </option>
+          <option value="Vidrio">Vidrio</option>
+          <option value="Plomo">Plomo</option>
+          <option value="Cobre">Cobre</option>
+          <option value="Estaño">Estaño</option>
+          <option value="Esmaltes y pigmentos">Esmaltes y pigmentos</option>
+          <option value="Herramientas de corte y modelado">Herramientas de corte y modelado</option>
+          <option value="Papel de cera o acetato">Papel de cera o acetato</option>
+          <option value="Papel de cera o acetato">Otros materiales/option>
+        </select>
 
-    if (!cantidadMaterial.value.trim()) {
-        alert('Debe ingresar la cantidad del material.');
-        return;
-    }
+        <input type="number" id="cantidadMaterial" placeholder="Cantidad" required />
+        
+        <input type="number" id="precioUnitarioMaterial" placeholder="Precio Unitario" required />
+      
+        <button onclick="agregarMaterial()">Agregar</button>
+      
+        <table id="tablaMateriales">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad</th>
+              <th>Precio Unitario</th>
+              <th>Valor Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      
+        <p id="totalMateriales">Total Materiales: S/0.00</p>
+      </fieldset>
+      
 
-    if (!precioUnitarioMaterial.value.trim()) {
-        alert('Debe ingresar el precio unitario del material.');
-        return;
-    }
+      <!-- Mano de Obra -->
+      <fieldset>
+        <legend>Mano de Obra</legend>
+        <input type="text" id="nombreEmpleado" placeholder="Nombre" />
+        <input
+          type="number"
+          id="horasTrabajadas"
+          placeholder="Horas Trabajadas"
+          required
+        />
+        <input type="number" id="precioPorHora" placeholder="Coste por Hora" />
+        <button onclick="agregarManoDeObra()">Agregar</button>
+        <table id="tablaManoDeObra">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Horas Trabajadas</th>
+              <th>Coste por Hora</th>
+              <th>Valor Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="totalManoDeObra">Total Mano de Obra: S/0.00</p>
+      </fieldset>
 
-    // Convertir valores y calcular el valor total
-    const nombre = listaMateriales.value.trim();
-    const cantidad = parseFloat(cantidadMaterial.value);
-    const precioUnitario = parseFloat(precioUnitarioMaterial.value);
-    const valorTotal = cantidad * precioUnitario;
+      <!-- Gastos Indirectos -->
+      <fieldset>
+        <legend>Gastos Indirectos</legend>
 
-    // Agregar el material a la lista
-    materiales.push({ nombre, cantidad, precioUnitario, valorTotal });
+        <select id="listaGasto" required>
+            <option value="">Seleccione un tipo de gasto indirecto</option>
+            <option value="Transporte">Transporte</option>
+            <option value="Energía eléctrica">Energía eléctrica</option>
+            <option value="Alquiler del local">Alquiler del local</option>
+            <option value="Mantenimiento de equipos">Mantenimiento de equipos</option>
+            <option value="Seguridad e higiene">Seguridad e higiene</option>
+            <option value="Impuestos y tasas">Impuestos y tasas</option>
+            <option value="Publicidad y marketing">Publicidad y marketing</option>
+            <option value="Consultorías y servicios profesionales">Consultorías y servicios profesionales</option>
+            <option value="Capacitación del personal">Capacitación del personal</option>
+            <option value="Capacitación del personal">Otros gastos administrativos</option>
+        </select>
 
-    // Actualizar la tabla y calcular totales
-    actualizarTabla('tablaMateriales', materiales);
-    calcularTotales();
+        <input
+          type="number"
+          id="cantidadHorasGasto"
+          placeholder="Cantidad Horas"
+        />
+        <input
+          type="number"
+          id="precioUnitarioGasto"
+          placeholder="Precio Unitario"
+        />
+        <button onclick="agregarGastoIndirecto()">Agregar</button>
+        <table id="tablaGastosIndirectos">
+          <thead>
+            <tr>
+              <th>Nombre</th>
+              <th>Cantidad Horas</th>
+              <th>Precio Unitario</th>
+              <th>Valor Total</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <p id="totalGastosIndirectos">Total Gastos Indirectos: S/0.00</p>
+      </fieldset>
 
-    // Limpiar campos después de agregar
-    listaMateriales.value = '';
-    cantidadMaterial.value = '';
-    precioUnitarioMaterial.value = '';
-}
+      <!-- Observaciones Generales -->
+      <section>
+        <h3>Observaciones Generales</h3>
+        <textarea id="observaciones" rows="3"></textarea>
+      </section>
 
-
-
-function agregarManoDeObra() {
-    const nombreEmpleado = document.getElementById('nombreEmpleado');
-    const horasTrabajadas = document.getElementById('horasTrabajadas');
-    const precioPorHora = document.getElementById('precioPorHora');
-
-    // Validar que los campos obligatorios estén llenos
-    if (!nombreEmpleado.value.trim()) {
-        alert('Debe ingresar el nombre del empleado.');
-        return;
-    }
-
-    if (!horasTrabajadas.value.trim()) {
-        alert('Debe ingresar las horas trabajadas por el empleado.');
-        return;
-    }
-
-    if (!precioPorHora.value.trim()) {
-        alert('Debe ingresar el precio por hora del empleado.');
-        return;
-    }
-
-    // Convertir valores y calcular el valor total
-    const nombre = nombreEmpleado.value.trim();
-    const horas = parseFloat(horasTrabajadas.value);
-    const precio = parseFloat(precioPorHora.value);
-    const valorTotal = horas * precio;
-
-    // Agregar la mano de obra a la lista
-    manoDeObra.push({ nombre, horasTrabajadas: horas, precioPorHora: precio, valorTotal });
-
-    // Actualizar la tabla y calcular totales
-    actualizarTabla('tablaManoDeObra', manoDeObra);
-    calcularTotales();
-
-    // Limpiar campos después de agregar
-    nombreEmpleado.value = '';
-    horasTrabajadas.value = '';
-    precioPorHora.value = '';
-}
-
-
-function agregarGastoIndirecto() {
-    const nombreGasto = document.getElementById('listaGasto');
-    const cantidadHorasGasto = document.getElementById('cantidadHorasGasto');
-    const precioUnitarioGasto = document.getElementById('precioUnitarioGasto');
-
-    // Validar que los campos obligatorios estén llenos
-    if (!nombreGasto.value.trim()) {
-        alert('Debe ingresar el nombre del gasto.');
-        return;
-    }
-
-    if (!cantidadHorasGasto.value.trim()) {
-        alert('Debe ingresar la cantidad de horas del gasto.');
-        return;
-    }
-
-    if (!precioUnitarioGasto.value.trim()) {
-        alert('Debe ingresar el precio unitario del gasto.');
-        return;
-    }
-
-    // Convertir valores y calcular el valor total
-    const nombre = nombreGasto.value.trim();
-    const cantidadHoras = parseFloat(cantidadHorasGasto.value);
-    const precioUnitario = parseFloat(precioUnitarioGasto.value);
-    const valorTotal = cantidadHoras * precioUnitario;
-
-    // Agregar el gasto indirecto a la lista
-    gastosIndirectos.push({ nombre, cantidadHoras, precioUnitario, valorTotal });
-
-    // Actualizar la tabla y calcular totales
-    actualizarTabla('tablaGastosIndirectos', gastosIndirectos);
-    calcularTotales();
-
-    // Limpiar campos después de agregar
-    nombreGasto.value = '';
-    cantidadHorasGasto.value = '';
-    precioUnitarioGasto.value = '';
-}
-
-
-function actualizarTabla(idTabla, items) {
-    const tabla = document.getElementById(idTabla).getElementsByTagName('tbody')[0];
-    tabla.innerHTML = '';
-
-    items.forEach(item => {
-        const row = tabla.insertRow();
-        Object.values(item).forEach(text => {
-            const cell = row.insertCell();
-            cell.textContent = text;
-        });
-    });
-}
-
-function calcularTotales() {
-    const totalMateriales = materiales.reduce((total, item) => total + item.valorTotal, 0);
-    const totalManoDeObra = manoDeObra.reduce((total, item) => total + item.valorTotal, 0);
-    const totalGastosIndirectos = gastosIndirectos.reduce((total, item) => total + item.valorTotal, 0);
-
-    document.getElementById('totalMateriales').textContent = `Total Materiales: S/${totalMateriales.toFixed(2)}`;
-    document.getElementById('totalManoDeObra').textContent = `Total Mano de Obra: S/${totalManoDeObra.toFixed(2)}`;
-    document.getElementById('totalGastosIndirectos').textContent = `Total Gastos Indirectos: S/${totalGastosIndirectos.toFixed(2)}`;
-}
-
-function calcularCostoTotal() {
-    const totalMateriales = materiales.reduce((total, item) => total + item.valorTotal, 0);
-    const totalManoDeObra = manoDeObra.reduce((total, item) => total + item.valorTotal, 0);
-    const totalGastosIndirectos = gastosIndirectos.reduce((total, item) => total + item.valorTotal, 0);
-
-    const costoTotalProduccion = totalMateriales + totalManoDeObra + totalGastosIndirectos;
-    const cantidadProducir = parseFloat(document.getElementById('cantidadProducir').value);
-
-    document.getElementById('costoTotalProduccion').textContent = `Total Costo Producción: S/${costoTotalProduccion.toFixed(2)}`;
-    document.getElementById('cantidadProducida').textContent = `Cantidad Producida: ${cantidadProducir}`;
-}
-
-
-// Ejecutar la función al cargar la página
-document.addEventListener('DOMContentLoaded', function() {
-    manejarSeleccion();
-});
+      <!-- Calcular Costo Total -->
+      <button onclick="calcularCostoTotal()">Calcular Costo Total</button>
+      <p id="costoTotalProduccion">Total Costo Producción: S/0.00</p>
+      <p id="cantidadProducida">Cantidad Producida: 0</p>
+    </div>
+    <script src="script.js"></script>
+    <script src="inhabilitar.js"></script>
+  </body>
+</html>
