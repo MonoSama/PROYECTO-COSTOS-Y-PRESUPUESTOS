@@ -1,147 +1,164 @@
-/* Estilos generales */
-body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background-color: #b0def0;
-   
-}
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f0f0f0;
+        }
 
-.form-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
-}
+        .container {
+            background-color: #fff;
+            padding: 2rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            width: 100%;
+            margin: 2rem;
+            border-radius: 8px;
+        }
 
-.form-row > * {
-    flex: 1 1 auto;
-    max-width: calc(33.3333% - 1rem);
-}
+        header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-.form-row label {
-    display: inline-block;
-    width: 100%;
-    margin-bottom: 0.5rem;
-}
+        header h1 {
+            margin-bottom: 0;
+            color: #333;
+        }
 
-.form-row input[type="date"],
-.form-row input[type="text"],
-.form-row input[type="number"] {
-    width: 100%;
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+        header h2 {
+            margin-top: 0;
+            color: #4caf50;
+        }
 
-.form-row input[type="number"] {
-    -moz-appearance: textfield;
-}
+        h3 {
+            background-color: #4caf50;
+            color: white;
+            padding: 0.5rem;
+            margin: 1rem 0 0.5rem;
+            border-radius: 4px;
+        }
 
-.form-row input[type="number"]::-webkit-outer-spin-button,
-.form-row input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-fieldset {
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-sizing: border-box;
-}
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-.container {
-    width: 90%; /* Aumentado para mayor espacio */
-    max-width: 1200px; /* Establece un ancho máximo */
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    margin: 20px;
-    border-radius: 28px;
-}
+        .form-row > * {
+            flex: 1 1 auto;
+            max-width: 100%;
+        }
 
-header h1, header h2 {
-    text-align: center;
-    margin: 0;
-}
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
 
-/* Estilos para secciones y campos */
-section {
-    margin-bottom: 20px;
-}
+        input[type="text"],
+        input[type="number"],
+        input[type="date"],
+        select,
+        textarea {
+            width: 95%;
+            padding: 0.5rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
 
-.article-info, .article-specs, .header-info {
-    display: grid; /* Cambiado a grid para mejor alineación */
-    gap: 10px; /* Espacio entre elementos */
-}
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
 
-.article-info div, .article-specs, .header-info div {
-    margin: 0;
-}
+        .flex-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
 
-/* Estilos para formularios y campos de entrada */
-input[type="text"], input[type="number"], input[type="date"], textarea, select {
-    margin: 5px 0; /* Espaciado superior e inferior */
-    padding: 10px;
-    width: 100%; /* Ocupa todo el ancho disponible */
-    box-sizing: border-box;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px; /* Tamaño de fuente */
-}
+        fieldset {
+            flex: 1 1 calc(33.333% - 1rem);
+            border: 2px solid #4caf50;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+        }
 
-button {
-    margin: 10px 0;
-    padding: 10px 20px;
-    cursor: pointer;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
 
-button:hover {
-    background-color: #45a049;
-}
+        table, th, td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
 
-/* Estilos para tablas */
-table {
-    width: 100%;
-    margin-top: 10px;
-    border-collapse: collapse;
-}
+        .totales {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
 
-th, td {
-    padding: 10px;
-    border: 1px solid #ccc;
-    text-align: left;
-}
+        button[type="button"],
+        button[type="submit"] {
+            background-color: #4caf50;
+            color: white;
+            padding: 0.5rem 1rem;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+        }
 
-/* Estilos para campos ocultos */
-input[type="hidden"] {
-    display: none; /* Oculta los campos ocultos */
-}
+        button[type="button"]:hover,
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
 
-/* Estilos para secciones específicas */
-.section-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    border-bottom: 1px solid #ccc;
-    padding-bottom: 5px;
-}
+        @media (max-width: 768px) {
+            .flex-row {
+                flex-direction: column;
+            }
 
-/* Media queries para hacer el diseño responsive */
-@media only screen and (max-width: 768px) {
-    .container {
-        width: 95%; /* Reducir el ancho en dispositivos pequeños */
-    }
+            fieldset {
+                flex: 1 1 100%;
+            }
+        }
 
-    input[type="text"], input[type="number"], input[type="date"], textarea, select {
-        font-size: 14px; /* Tamaño de fuente más pequeño */
-    }
-}
+
+                /* Estilo para alinear los elementos en línea */
+                .article-info {
+                    display: flex;
+                    flex-wrap: wrap; /* Permite que los elementos se ajusten a la línea si no caben */
+                }
+                .article-info > div {
+                    margin-right: 20px; /* Espacio entre los elementos */
+                    margin-bottom: 10px; /* Espacio hacia abajo */
+                    flex: 1; /* Permite que los elementos se expandan para llenar el espacio disponible */
+                }
+                .article-info strong {
+                    margin-right: 5px; /* Espacio entre el texto y el input */
+                }
+                .article-specs {
+                    margin-top: 10px; /* Espacio hacia arriba */
+                }
+                .article-specs textarea {
+                    width: calc(100% - 120px); /* Ancho del textarea */
+                    margin-top: 5px; /* Espacio hacia arriba */
+                }
